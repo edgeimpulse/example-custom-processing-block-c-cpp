@@ -160,7 +160,7 @@ class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
     pass
 
 def run():
-    host = '0.0.0.0' if not 'HOST' in os.environ else os.environ['HOST']
+    host = '0.0.0.0'
     port = 4446 if not 'PORT' in os.environ else int(os.environ['PORT'])
 
     server = ThreadingSimpleServer((host, port), Handler)
