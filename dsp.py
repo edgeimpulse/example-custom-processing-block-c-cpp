@@ -37,7 +37,7 @@ def generate_features(implementation_version, draw_graphs, raw_data, axes, sampl
         # But all c/cpp types are supported, including pointers, arrays, and structs
         # Those types may need to be converted manually
         # See https://cppyy.readthedocs.io/en/latest/basic_types.html for examples of other input types
-        rms = generate_features_cpp(raw_data[:, ax].tolist())
+        rms = generate_features_cpp(raw_data[:, ax].tolist(), scale_axes)
         features.append(rms)
 
     return {
