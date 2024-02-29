@@ -4,6 +4,18 @@ Note, if you pip install cppyy locally, it will define an environment variable c
 
 This is an example of a custom processing block, which you can load in the Edge Impulse studio. See the docs: [Building custom processing blocks](https://docs.edgeimpulse.com/docs/custom-blocks).
 
-# Known Issues
+## Troubleshooting
 
-There are known issues with cppyy running on some Apple M2 processors (including in a Linux container).  If you see errors when trying to run the example python file here, consider another Python to CPP binding tool like pybind11.
+If you get the following error:
+```
+(Re-)building pre-compiled headers (options: -O2); this may take a minute ...
+ERROR in cling::CIFactory::createCI(): cannot extract standard library include paths!
+Invoking:
+  LC_ALL=C clang-14  -O2 -DNDEBUG -xc++ -E -v /dev/null 2>&1 | sed -n -e '/^.*include/,${' -e '/^ \/.*++/p' -e '}'
+```
+
+Create a symlink for clang-14
+```
+cd $(dirname $(which clang))
+ln -s clang clang-14
+```
