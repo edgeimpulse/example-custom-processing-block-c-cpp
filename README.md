@@ -6,6 +6,7 @@ This is an example of a custom processing block, which you can load in the Edge 
 
 ## Troubleshooting
 
+### ERROR in cling
 If you get the following error:
 ```
 (Re-)building pre-compiled headers (options: -O2); this may take a minute ...
@@ -18,4 +19,16 @@ Create a symlink for clang-14
 ```
 cd $(dirname $(which clang))
 ln -s clang clang-14
+```
+
+### error: the clang compiler does not support '-march=native'
+This may occur if you host the Dockerfile on Apple silicon. (note, shouldn't happen if you push to Studio)
+If you see this, add this environment variable to your Dockerfile or call to dsp-server.py
+```
+EXTRA_CLING_ARGS=''
+```
+
+You can also try this for better performance
+```
+EXTRA_CLING_ARGS='-O2'
 ```
